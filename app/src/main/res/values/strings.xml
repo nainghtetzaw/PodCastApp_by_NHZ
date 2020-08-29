@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PodcastApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_podcast">Podcast</string>
+    <string name="tv_podcast_speed">1x</string>
+    <string name="tv_pod_cast_description">Having a personalized domain name will make you stand out of the crowd and let your audience and clients recognize your brand. So, whether you decide on</string>
+    <string name="tv_up_next">Up Next</string>
+    <string name="tv_pod_cast_type"><![CDATA[ART & DESIGN]]></string>
+    <string name="tv_pod_cast_description_detail">A podcast description is like a book jacket. It’s what people read after the name of your show has drawn them in but before they decide to start listening. Much like an author would labor over their book jacket, podcasters also need to labor over their podcast description.If a potential listener has read this far into your description, they are probably very interested, but you will want to drive the point home that the show is for them by literally telling them that "this show is for you!" This is also a chance to use different keywords to describe the show, so that if some listeners looking for your podcasts about Texas politics type in "Austin Statehouse" and some type in "southern elected leaders" in their podcast directorys search bar, your show appears for both.</string>
+</resources>

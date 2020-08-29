@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMedia"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        app:cardCornerRadius="30dp"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:background="@color/color_blue">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPodCastReachedTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="05:15"
+                    android:textColor="@color/color_light_blue"
+                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"
+                    android:layout_alignTop="@id/pbPodCastProgress"/>
+
+                <ProgressBar
+                    android:id="@+id/pbPodCastProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/tvPodCastReachedTime"
+                    android:layout_toStartOf="@id/tvPodCastTimeLeftDetail"
+                    android:indeterminate="false"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:progress="30"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="9dp"
+                    android:progressTint="@color/color_light_blue"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPodCastTimeLeftDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10:15"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/color_light_blue"
+                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPodcastPlayingSpeedDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_podcast_speed"
+                    android:textColor="@color/color_white"
+                    android:layout_marginStart="20dp"
+                    android:layout_centerVertical="true"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgPreviousDetail"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_replay_10_24"
+                    android:layout_marginStart="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/tvPodcastPlayingSpeedDetail"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgPauseDetail"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_baseline_pause_24"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_pause_color"
+                    android:padding="10dp"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgSkipDetail"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_baseline_forward_30_24"
+                    android:layout_toStartOf="@id/tvSleepDetail"
+                    android:layout_marginEnd="50dp"
+                    android:layout_centerVertical="true"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSleepDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zz"
+                    android:textColor="@color/color_white"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

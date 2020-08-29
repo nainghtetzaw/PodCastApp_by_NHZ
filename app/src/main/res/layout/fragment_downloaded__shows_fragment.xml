@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white"
+    tools:context=".fragments.Downloaded_Shows_fragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.BottomAppBar">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgBack"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvYour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="@color/color_black"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/imgBack"
+            android:layout_marginStart="8dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shows"
+            android:textSize="22dp"
+            android:textColor="@color/color_black"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/tvYour"
+            android:layout_marginStart="4dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgOption"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_more_horiz_24"
+            android:layout_marginEnd="20dp"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rviewYourShow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_your_shows"/>
+
+</LinearLayout>

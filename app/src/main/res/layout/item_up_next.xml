@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="125dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_white"
+    android:layout_marginEnd="20dp"
+    android:layout_marginStart="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardPostCastPoster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="25dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPodCastPoster"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:src="@drawable/podcast"
+            android:scaleType="centerCrop"
+            android:outlineProvider="bounds" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPodCastType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_pod_cast_type"
+        android:textSize="8dp"
+        android:background="@drawable/rounded_text"
+        android:padding="6dp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/cardPostCastPoster"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPodcastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/cardPostCastPoster"
+        android:layout_toStartOf="@id/imgDownload"
+        android:layout_below="@+id/tvPodCastType"
+        android:text="Women n Tech Podcast, hosted by Expree Devara "
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/color_black"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:maxLines="2"
+        android:ellipsize="end"/>
+
+    <ProgressBar
+        android:id="@+id/pbPodCastProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/cardPostCastPoster"
+        android:layout_toStartOf="@id/tvPodCastTime"
+        android:layout_below="@id/tvPodcastName"
+        android:indeterminate="false"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:progress="30"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:progressTint="@color/color_light_blue"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPodCastTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1h left"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/tvPodcastName"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/color_text_grey_white"
+        android:textStyle="bold"
+        android:layout_marginEnd="20dp"/>
+    
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgDownload"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_baseline_cloud_download_24"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/tvPodcastName"
+        android:layout_marginStart="8dp"/>
+
+</RelativeLayout>
