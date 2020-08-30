@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragments.SearchFragment">
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp"
+        android:layout_margin="20dp">
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPodCastFamous"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:src="@drawable/nightpodcast"
+            android:scaleType="centerCrop"/>
+        
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PodCast Categories"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/color_black"
+        android:layout_marginStart="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rviewPodcastCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        tools:listitem="@layout/item_category" />
+
+</LinearLayout>

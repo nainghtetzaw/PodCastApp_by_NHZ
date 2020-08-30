@@ -7,12 +7,14 @@ import androidx.fragment.app.FragmentManager
 import com.example.podcastapp.R
 import com.example.podcastapp.fragments.Downloaded_Shows_fragment
 import com.example.podcastapp.fragments.HomeFragment
+import com.example.podcastapp.fragments.SearchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val fragment1 : HomeFragment = HomeFragment.newInstance("a","b")
     private val fragment2 : Downloaded_Shows_fragment = Downloaded_Shows_fragment.newInstance("a","b")
+    private val fragment3 : SearchFragment = SearchFragment.newInstance("a","b")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var activeFragment : Fragment = fragment1
@@ -33,8 +35,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 else -> {
-                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment1).commit()
-                    activeFragment = fragment1
+                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment3).commit()
+                    activeFragment = fragment3
                     true
                 }
             }
@@ -48,6 +50,10 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, fragment2)
             .hide(fragment2)
+            .commit()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container,fragment3)
+            .hide(fragment3)
             .commit()
     }
 }
