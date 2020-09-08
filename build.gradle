@@ -24,3 +24,16 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+def podCastImportantDataDb = loadImportantDataFromFile()
+
+ext{
+    podcastApiKey = podCastImportantDataDb.getProperty('PODCAST_API')
+    podcastDetailKey = podCastImportantDataDb.getProperty('PODCAST_LIST_KEY')
+}
+
+def loadImportantDataFromFile(){
+    Properties podCastProperties = new Properties()
+    podCastProperties.load(project.rootProject.file('important.properties').newDataInputStream())
+    return podCastProperties
+}

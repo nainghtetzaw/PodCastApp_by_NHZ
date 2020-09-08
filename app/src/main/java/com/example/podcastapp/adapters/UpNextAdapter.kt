@@ -2,22 +2,18 @@ package com.example.podcastapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.example.podcastapp.R
-import com.example.podcastapp.views.viewholders.BaseViewholder
+import com.example.podcastapp.data.vos.UpNextPodCastVO
+import com.example.podcastapp.delegates.PodcastDelegate
 import com.example.podcastapp.views.viewholders.UpNextViewHolder
 
-class UpNextAdapter : RecyclerView.Adapter<UpNextViewHolder>() {
+class UpNextAdapter(delegate: PodcastDelegate) :
+    com.example.share.BaseAdapter<UpNextViewHolder, UpNextPodCastVO>() {
+
+    val mDelegate: PodcastDelegate = delegate
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpNextViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_up_next,parent,false)
-        return UpNextViewHolder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return 5
-    }
-
-    override fun onBindViewHolder(holder: UpNextViewHolder, position: Int) {
-
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_up_next, parent, false)
+        return UpNextViewHolder(view, mDelegate)
     }
 }

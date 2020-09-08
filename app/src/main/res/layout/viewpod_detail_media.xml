@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -24,39 +24,40 @@
                 android:layout_marginTop="10dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvPodCastReachedTime"
+                    android:id="@+id/tvPodCastStartTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="05:15"
+                    android:layout_alignTop="@id/pbPodCastSeekBar"
                     android:textColor="@color/color_light_blue"
                     android:textStyle="bold"
                     android:layout_marginStart="20dp"
-                    android:layout_alignTop="@id/pbPodCastProgress"/>
+                    android:inputType="time" />
 
-                <ProgressBar
-                    android:id="@+id/pbPodCastProgress"
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/pbPodCastSeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/tvPodCastReachedTime"
-                    android:layout_toStartOf="@id/tvPodCastTimeLeftDetail"
-                    android:indeterminate="false"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_toEndOf="@id/tvPodCastStartTime"
+                    android:layout_toStartOf="@id/tvPodCastEndTimeDetail"
                     android:progress="30"
-                    android:layout_marginStart="20dp"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_marginStart="6dp"
                     android:layout_marginTop="9dp"
-                    android:progressTint="@color/color_light_blue"/>
+                    android:progressTint="@color/color_light_blue" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvPodCastTimeLeftDetail"
+                    android:id="@+id/tvPodCastEndTimeDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10:15"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="4dp"
                     android:textColor="@color/color_light_blue"
                     android:textStyle="bold"
-                    android:layout_marginStart="20dp"/>
+                    android:inputType="time"
+                    android:layout_marginEnd="10dp" />
 
             </RelativeLayout>
 
@@ -71,25 +72,25 @@
                     android:text="@string/tv_podcast_speed"
                     android:textColor="@color/color_white"
                     android:layout_marginStart="20dp"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgPreviousDetail"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_baseline_replay_10_24"
-                    android:layout_marginStart="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/tvPodcastPlayingSpeedDetail"/>
+                    android:layout_marginStart="50dp"
+                    android:layout_toEndOf="@id/tvPodcastPlayingSpeedDetail"
+                    android:src="@drawable/ic_baseline_replay_10_24" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgPauseDetail"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_baseline_pause_24"
+                    android:padding="10dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_pause_color"
-                    android:padding="10dp"/>
+                    android:src="@drawable/image_pressable" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgSkipDetail"
@@ -98,7 +99,7 @@
                     android:src="@drawable/ic_baseline_forward_30_24"
                     android:layout_toStartOf="@id/tvSleepDetail"
                     android:layout_marginEnd="50dp"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvSleepDetail"
@@ -108,7 +109,7 @@
                     android:textColor="@color/color_white"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="20dp"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true" />
 
             </RelativeLayout>
 

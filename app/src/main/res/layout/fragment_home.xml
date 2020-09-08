@@ -24,7 +24,8 @@
                     android:id="@+id/imgPodcastLogo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/ic_baseline_graphic_eq_24"
+                    android:padding="10dp"
+                    android:src="@drawable/icon"
                     android:layout_marginStart="20dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -38,6 +39,7 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgNoti"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_baseline_notifications_none_24"

@@ -119,7 +119,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/mediaDetail">
+            android:layout_above="@id/mediaPlayView">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPodCastDescriptionDetail"
@@ -138,11 +138,11 @@
         </androidx.core.widget.NestedScrollView>
 
         <include
-            android:id="@+id/mediaDetail"
-            android:layout_width="wrap_content"
+            android:id="@+id/mediaPlayView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/viewpod_detail_media"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 

@@ -11,7 +11,7 @@
         android:layout_height="200dp"
         app:cardCornerRadius="30dp"
         android:layout_margin="20dp">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -53,7 +53,7 @@
                     android:textColor="@color/color_white"
                     android:textSize="20dp"
                     android:maxLines="1"
-                    android:ellipsize="end"/>
+                    android:ellipsize="end" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvPodcastAbout"
@@ -66,21 +66,20 @@
                     android:textColor="@color/color_text_grey_white"
                     android:textSize="17dp"
                     android:maxLines="1"
-                    android:ellipsize="end"/>
+                    android:ellipsize="end" />
 
-                <ProgressBar
-                    android:id="@+id/pbPodCastProgress"
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/pbPodCastRandomSeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/cardPostCastPosterMedia"
                     android:layout_toStartOf="@id/tvPodCastTimeLeft"
                     android:layout_below="@id/tvPodcastAbout"
-                    android:indeterminate="false"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:progress="30"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="6dp"
                     android:layout_marginTop="9dp"
-                    android:progressTint="@color/color_light_blue"/>
+                    android:progressTint="@color/color_light_blue" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvPodCastTimeLeft"
@@ -90,10 +89,10 @@
                     android:layout_alignParentEnd="true"
                     android:layout_below="@id/tvPodcastAbout"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="4dp"
                     android:textColor="@color/color_light_blue"
                     android:textStyle="bold"
-                    android:layout_marginStart="8dp"/>
+                    android:layout_marginEnd="10dp" />
 
             </RelativeLayout>
 
@@ -108,7 +107,7 @@
                     android:text="@string/tv_podcast_speed"
                     android:textColor="@color/color_white"
                     android:layout_marginStart="20dp"
-                   android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgPrevious"
@@ -117,16 +116,16 @@
                     android:src="@drawable/ic_baseline_replay_10_24"
                     android:layout_marginStart="50dp"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/tvPodcastPlayingSpeed"/>
+                    android:layout_toEndOf="@id/tvPodcastPlayingSpeed" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgPause"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_baseline_pause_24"
+                    android:padding="10dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_pause_color"
-                    android:padding="10dp"/>
+                    android:src="@drawable/image_pressable" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgSkip"
@@ -135,8 +134,8 @@
                     android:src="@drawable/ic_baseline_forward_30_24"
                     android:layout_toStartOf="@id/tvSleep"
                     android:layout_marginEnd="50dp"
-                    android:layout_centerVertical="true"/>
-                
+                    android:layout_centerVertical="true" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvSleep"
                     android:layout_width="wrap_content"
@@ -145,7 +144,7 @@
                     android:textColor="@color/color_white"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="20dp"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true" />
 
             </RelativeLayout>
 
@@ -166,6 +165,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tv_pod_cast_description"
                 android:textColor="@color/color_black"
+                android:maxLines="5"
                 android:layout_centerInParent="true"
                 android:background="@color/color_grey_white"
                 android:padding="20dp"
