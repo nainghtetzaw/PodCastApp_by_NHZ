@@ -10,6 +10,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.podcastapp.PlaybackStateListener
 import com.example.podcastapp.R
 import com.example.podcastapp.activities.PodCastDetailActivity
 import com.example.podcastapp.adapters.UpNextAdapter
@@ -32,6 +34,8 @@ import com.example.podcastapp.mvp.presenters.interfaces.HomePresenter
 import com.example.podcastapp.mvp.views.HomeView
 import com.example.podcastapp.utils.PARAM_DOWNLOAD_URI
 import com.google.android.exoplayer2.DefaultRenderersFactory
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
 import com.google.android.exoplayer2.source.ExtractorMediaSource
@@ -50,6 +54,7 @@ class HomeFragment : Fragment(), HomeView {
     private var isAudioPlaying: Boolean = false
     private var myDownloadId : Long = 0
     private var mDownloadedData : UpNextVO = UpNextVO()
+    private var playBackStateListener = PlaybackStateListener()
 
     private val br = object : BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -88,7 +93,7 @@ class HomeFragment : Fragment(), HomeView {
             .load(data.image)
             .into(imgPodCastPosterMedia)
         tvPodcastTitle.text = data.title
-        tvPodCastDescription.text = data.description
+        tvPodCastDescription.text = Html.fromHtml(data.description)
         tvPodcastAbout.text = data.podcast.podcastTitle
         tvPodCastDescription
         setUpMediaPlayer(data.audio)
@@ -175,6 +180,15 @@ class HomeFragment : Fragment(), HomeView {
                 null,
                 null
             )
+            mMediaPlayer.addListener(object : Player.EventListener{
+                override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+                    super.onPlayerStateChanged(playWhenReady, playbackState)
+                    if(playbackState == ExoPlayer.STATE_BUFFERING){
+                        val result = mMediaPlayer.currentPosition * 100 / mMediaPlayer.duration
+                        pbPodCastRandomSeekBar.progress = result.toInt()
+                    }
+                }
+            })
             mMediaPlayer.prepare(mediaSource)
         }
     }

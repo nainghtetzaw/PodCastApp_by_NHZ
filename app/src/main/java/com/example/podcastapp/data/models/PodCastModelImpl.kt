@@ -67,31 +67,12 @@ object PodCastModelImpl : BaseModel(), PodCastModel {
 
     }
 
-    override fun getAllPodCastDetailData(): LiveData<PodCastDetailVO> {
-        return mPodCastDb.podCastDetailDao().getAllDataFromPodCastDetailTable()
-    }
-
     override fun getAllGenreData(): LiveData<List<GenreVO>> {
         return mPodCastDb.genreDao().getAllDataFromGenreTable()
     }
 
-    override fun getPodCastDetailDataAndSaveToDatabase(
-        id: String,
-        onSuccess: () -> Unit,
-        onError: (String) -> Unit
-    ) {
-        mPodCastApi.getPodCastDetailResponse(
-            PARAM_API_KEY,
-            id
-        )
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                mPodCastDb.podCastDetailDao().insertDataIntoPodCastDetailTable(it)
-            }, {
-                Log.e("TAG", it.localizedMessage)
-                onError(it.localizedMessage ?: "Network fail")
-            })
+    override fun getPodCastDetailData(id: String) : LiveData<UpNextVO>{
+        return mPodCastDb.upNextPodCastDao().getAllDataFromUpNextById(id)
     }
 
     override fun getDownloadedDataAndSaveToDatabase(data: UpNextVO) {

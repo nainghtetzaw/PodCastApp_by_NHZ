@@ -16,7 +16,7 @@ class DownloadedShowsViewHolder(itemview: View,mDelegate: DownloadDelegate) :
     init {
         itemview.imgYourShowPoster.setOnClickListener {
             mData?.let {
-                mDelegate.onItemClick(PARAM_DETAIL_PODCAST_ID)
+                mDelegate.onItemClick(it.id)
             }
         }
     }

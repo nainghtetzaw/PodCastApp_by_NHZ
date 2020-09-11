@@ -4,17 +4,22 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Html
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
+import com.example.podcastapp.PlaybackStateListener
 import com.example.podcastapp.R
 import com.example.podcastapp.data.vos.PodCastDetailVO
+import com.example.podcastapp.data.vos.UpNextVO
 import com.example.podcastapp.mvp.presenters.implementations.PodCastDetailPresenterImpl
 import com.example.podcastapp.mvp.presenters.interfaces.PodCastDetailPresenter
 import com.example.podcastapp.mvp.views.PodCastDetailView
 import com.example.podcastapp.utils.PARAM_DOWNLOAD_URI
 import com.google.android.exoplayer2.DefaultRenderersFactory
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
 import com.google.android.exoplayer2.source.ExtractorMediaSource
@@ -43,8 +48,6 @@ class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pod_cast_detail)
         setUpPresenter()
-
-
         val podcastId = intent.getStringExtra(PODCAST_ID)
         podcastId?.let {
             mPresenter.onUiReady(this, this,it)
@@ -53,12 +56,12 @@ class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
 
     }
 
-    override fun showPodCastDetailData(data: PodCastDetailVO) {
+    override fun showPodCastDetailData(data: UpNextVO) {
         Glide.with(this)
             .load(data.image)
             .into(imgPodCastPosterDetail)
         tvPodcastTitleDetail.text = data.title
-        tvPodCastDescriptionDetail.text = data.description
+        tvPodCastDescriptionDetail.text = Html.fromHtml(data.description)
         tvTotalPodCastTime.text = "${convertSecIntoMinute(data.audioLengthSec)} m"
         tvPodCastStartTime.text = convertSecIntoMinute(0)
         tvPodCastEndTimeDetail.text = convertSecIntoMinute(data.audioLengthSec)
@@ -115,7 +118,7 @@ class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
         }
     }
 
-    private fun setUpMediaPlayer(data : PodCastDetailVO) {
+    private fun setUpMediaPlayer(data : UpNextVO) {
         val defaultRenderersFactory = DefaultRenderersFactory(this)
         mMediaPlayer =
             SimpleExoPlayer.Builder(this, defaultRenderersFactory).build()
@@ -127,6 +130,15 @@ class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
             null,
             null
         )
+        mMediaPlayer.addListener(object : Player.EventListener{
+            override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+                super.onPlayerStateChanged(playWhenReady, playbackState)
+                if(playbackState == ExoPlayer.STATE_BUFFERING){
+                    val result = mMediaPlayer.currentPosition * 100 / mMediaPlayer.duration
+                    pbPodCastSeekBar.progress = result.toInt()
+                }
+            }
+        })
         mMediaPlayer.prepare(mediaSource)
     }
 

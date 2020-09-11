@@ -9,19 +9,11 @@ import com.example.podcastapp.mvp.views.PodCastDetailView
 class PodCastDetailPresenterImpl : AbstractBasePresenter<PodCastDetailView>(),
     PodCastDetailPresenter {
     override fun onUiReady(context: Context, lifecycleOwner: LifecycleOwner, id: String) {
-        requestPodCastDetailDataFromNetwork(id)
-        getPodCastDetailDataFromDataBase(lifecycleOwner)
+        getPodCastDetailDataFromDataBase(id,lifecycleOwner)
     }
-
-    private fun requestPodCastDetailDataFromNetwork(id: String) {
-        mModel.getPodCastDetailDataAndSaveToDatabase(id, {}, {})
-    }
-
-    private fun getPodCastDetailDataFromDataBase(lifecycleOwner: LifecycleOwner) {
-        mModel.getAllPodCastDetailData().observe(lifecycleOwner, Observer {
-            if(it != null){
-                mView?.showPodCastDetailData(it)
-            }
+    private fun getPodCastDetailDataFromDataBase(id: String,lifecycleOwner: LifecycleOwner) {
+        mModel.getPodCastDetailData(id).observe(lifecycleOwner, Observer {
+            mView?.showPodCastDetailData(it)
         })
     }
 }

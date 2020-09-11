@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.podcastapp.data.vos.UpNextPodCastVO
+import com.example.podcastapp.data.vos.UpNextVO
 
 @Dao
 interface UpNextPodCastDao {
@@ -13,8 +14,8 @@ interface UpNextPodCastDao {
     @Query("SELECT * FROM Up_Next")
     fun getAllDataFromUpNextTable(): LiveData<List<UpNextPodCastVO>>
 
-    @Query("SELECT * FROM Up_Next WHERE id = :podcastid")
-    fun getAllDataFromUpNextById(podcastid : Int) : LiveData<List<UpNextPodCastVO>>
+    @Query("SELECT * FROM Data WHERE id = :podcastid")
+    fun getAllDataFromUpNextById(podcastid : String) : LiveData<UpNextVO>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDataIntoUpNextTable(list: List<UpNextPodCastVO>)
