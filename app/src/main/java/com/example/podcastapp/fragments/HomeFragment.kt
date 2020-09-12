@@ -22,7 +22,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.podcastapp.PlaybackStateListener
 import com.example.podcastapp.R
 import com.example.podcastapp.activities.PodCastDetailActivity
 import com.example.podcastapp.adapters.UpNextAdapter
@@ -39,6 +38,8 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
 import com.google.android.exoplayer2.source.ExtractorMediaSource
+import com.google.android.exoplayer2.source.MediaSourceFactory
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -54,7 +55,6 @@ class HomeFragment : Fragment(), HomeView {
     private var isAudioPlaying: Boolean = false
     private var myDownloadId : Long = 0
     private var mDownloadedData : UpNextVO = UpNextVO()
-    private var playBackStateListener = PlaybackStateListener()
 
     private val br = object : BroadcastReceiver(){
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -112,7 +112,7 @@ class HomeFragment : Fragment(), HomeView {
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE
                 )
             } else {
-                download(data.data)
+                download(data.data.audio)
             }
         }
     }
@@ -173,13 +173,15 @@ class HomeFragment : Fragment(), HomeView {
             mMediaPlayer =
                 SimpleExoPlayer.Builder(it.applicationContext, defaultRenderersFactory).build()
             val userAgent = Util.getUserAgent(it.applicationContext, "The PodCast App")
-            val mediaSource = ExtractorMediaSource(
-                Uri.parse(audio),
-                DefaultDataSourceFactory(it.applicationContext, userAgent),
-                DefaultExtractorsFactory(),
-                null,
-                null
-            )
+//            val mediaSource = ExtractorMediaSource(
+//                Uri.parse(audio),
+//                DefaultDataSourceFactory(it.applicationContext, userAgent),
+//                DefaultExtractorsFactory(),
+//                null,
+//                null
+//            )
+            val defaultDataSourceFactory = DefaultDataSourceFactory(it.applicationContext,"PodCast")
+            val mediaSource = ProgressiveMediaSource.Factory(defaultDataSourceFactory).createMediaSource(Uri.parse(audio))
             mMediaPlayer.addListener(object : Player.EventListener{
                 override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
                     super.onPlayerStateChanged(playWhenReady, playbackState)
@@ -189,13 +191,13 @@ class HomeFragment : Fragment(), HomeView {
                     }
                 }
             })
-            mMediaPlayer.prepare(mediaSource)
+            mMediaPlayer.prepare(mediaSource,false,false)
         }
     }
 
-    private fun download(data: UpNextVO){
+    private fun download(uri : String){
         val request = DownloadManager.Request(
-            Uri.parse(PARAM_DOWNLOAD_URI)
+            Uri.parse(uri)
         )
             .setTitle("Downing Audio")
             .setDestinationInExternalFilesDir(context,Environment.DIRECTORY_DOWNLOADS,"PodCastAudio.mp3")
@@ -214,7 +216,7 @@ class HomeFragment : Fragment(), HomeView {
         when (requestCode) {
             REQUEST_CODE -> if (grantResults.isNotEmpty() &&
                 grantResults[0] === PackageManager.PERMISSION_GRANTED) {
-                download(mDownloadedData)
+                download(mDownloadedData.audio)
             }
         }
     }

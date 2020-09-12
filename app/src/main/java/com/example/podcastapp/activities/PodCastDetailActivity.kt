@@ -9,7 +9,6 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
-import com.example.podcastapp.PlaybackStateListener
 import com.example.podcastapp.R
 import com.example.podcastapp.data.vos.PodCastDetailVO
 import com.example.podcastapp.data.vos.UpNextVO
@@ -23,6 +22,7 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
 import com.google.android.exoplayer2.source.ExtractorMediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.activity_pod_cast_detail.*
@@ -65,7 +65,7 @@ class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
         tvTotalPodCastTime.text = "${convertSecIntoMinute(data.audioLengthSec)} m"
         tvPodCastStartTime.text = convertSecIntoMinute(0)
         tvPodCastEndTimeDetail.text = convertSecIntoMinute(data.audioLengthSec)
-        setUpMediaPlayer(data)
+        setUpMediaPlayer(data.audio)
     }
 
     private fun setUpPresenter() {
@@ -118,18 +118,20 @@ class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
         }
     }
 
-    private fun setUpMediaPlayer(data : UpNextVO) {
+    private fun setUpMediaPlayer(audio : String) {
         val defaultRenderersFactory = DefaultRenderersFactory(this)
         mMediaPlayer =
             SimpleExoPlayer.Builder(this, defaultRenderersFactory).build()
         val userAgent = Util.getUserAgent(this, "The PodCast App")
-        val mediaSource = ExtractorMediaSource(
-            Uri.parse(PARAM_DOWNLOAD_URI),
-            DefaultDataSourceFactory(this, userAgent),
-            DefaultExtractorsFactory(),
-            null,
-            null
-        )
+//        val mediaSource = ExtractorMediaSource(
+//            Uri.parse(PARAM_DOWNLOAD_URI),
+//            DefaultDataSourceFactory(this, userAgent),
+//            DefaultExtractorsFactory(),
+//            null,
+//            null
+//        )
+        val defaultDataSourceFactory = DefaultDataSourceFactory(this,"PodCast")
+        val mediaSource = ProgressiveMediaSource.Factory(defaultDataSourceFactory).createMediaSource(Uri.parse(audio))
         mMediaPlayer.addListener(object : Player.EventListener{
             override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
                 super.onPlayerStateChanged(playWhenReady, playbackState)
