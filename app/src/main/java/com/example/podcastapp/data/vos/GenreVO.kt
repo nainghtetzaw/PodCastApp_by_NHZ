@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "Genre")
+//@Entity(tableName = "Genre")
 data class GenreVO(
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id") var id: Int = 0,

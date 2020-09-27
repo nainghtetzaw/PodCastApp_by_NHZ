@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.podcastapp.R
 import com.example.podcastapp.data.vos.UpNextPodCastVO
+import com.example.podcastapp.data.vos.UpNextVO
 import com.example.podcastapp.delegates.PodcastDelegate
 import com.example.podcastapp.views.viewholders.UpNextViewHolder
 
 class UpNextAdapter(delegate: PodcastDelegate) :
-    com.example.share.BaseAdapter<UpNextViewHolder, UpNextPodCastVO>() {
+    com.example.share.BaseAdapter<UpNextViewHolder, UpNextVO>() {
 
     val mDelegate: PodcastDelegate = delegate
 

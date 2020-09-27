@@ -7,6 +7,6 @@ import com.example.podcastapp.data.vos.UpNextVO
 interface HomeView : BaseView {
     fun navigateToDetail(id: String)
     fun showRandomPodCastData(data: RandomPodCastVO)
-    fun showUpNextPodCastData(data: List<UpNextPodCastVO>)
-    fun makeDownloadProgress(data : UpNextPodCastVO)
+    fun showUpNextPodCastData(data: List<UpNextVO>)
+    fun makeDownloadProgress(data : UpNextVO)
 }

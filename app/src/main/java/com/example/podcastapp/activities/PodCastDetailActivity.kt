@@ -27,7 +27,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.activity_pod_cast_detail.*
 import kotlinx.android.synthetic.main.viewpod_detail_media.*
-import kotlinx.android.synthetic.main.viewpod_media.*
+
 
 class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
 
@@ -62,9 +62,9 @@ class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
             .into(imgPodCastPosterDetail)
         tvPodcastTitleDetail.text = data.title
         tvPodCastDescriptionDetail.text = Html.fromHtml(data.description)
-        tvTotalPodCastTime.text = "${convertSecIntoMinute(data.audioLengthSec)} m"
+        tvTotalPodCastTime.text = "${convertSecIntoMinute(data.audio_length_sec)} m"
         tvPodCastStartTime.text = convertSecIntoMinute(0)
-        tvPodCastEndTimeDetail.text = convertSecIntoMinute(data.audioLengthSec)
+        tvPodCastEndTimeDetail.text = convertSecIntoMinute(data.audio_length_sec)
         setUpMediaPlayer(data.audio)
     }
 

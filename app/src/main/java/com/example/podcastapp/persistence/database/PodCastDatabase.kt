@@ -7,11 +7,11 @@ import androidx.room.RoomDatabase
 import com.example.podcastapp.data.vos.*
 import com.example.podcastapp.persistence.daos.*
 
-@Database(
-    entities = [RandomPodCastVO::class, UpNextPodCastVO::class, PodCastDetailVO::class, GenreVO::class,UpNextVO::class],
-    version = 15,
-    exportSchema = false
-)
+//@Database(
+//    entities = [RandomPodCastVO::class, UpNextPodCastVO::class, PodCastDetailVO::class, GenreVO::class,UpNextVO::class],
+//    version = 16,
+//    exportSchema = false
+//)
 abstract class PodCastDatabase : RoomDatabase() {
 
     companion object {

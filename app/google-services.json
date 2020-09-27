@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "159739739760",
+    "firebase_url": "https://podcast-app-by-nhz.firebaseio.com",
+    "project_id": "podcast-app-by-nhz",
+    "storage_bucket": "podcast-app-by-nhz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159739739760:android:703f97edfcad0d74173eb5",
+        "android_client_info": {
+          "package_name": "com.example.podcastapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159739739760-a641hql28dn8juu7bnab50bg9lfolvg3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN2tyDRVq_L17z_cHml2wAzQ_hzwagUVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159739739760-a641hql28dn8juu7bnab50bg9lfolvg3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

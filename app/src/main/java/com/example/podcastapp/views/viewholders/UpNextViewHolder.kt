@@ -5,6 +5,7 @@ import android.view.animation.AnimationUtils
 import com.bumptech.glide.Glide
 import com.example.podcastapp.R
 import com.example.podcastapp.data.vos.UpNextPodCastVO
+import com.example.podcastapp.data.vos.UpNextVO
 import com.example.podcastapp.delegates.PodcastDelegate
 import com.example.podcastapp.views.viewholders.BaseViewHolders.BaseUpNextViewHolder
 import kotlinx.android.synthetic.main.item_up_next.view.*
@@ -14,7 +15,7 @@ class UpNextViewHolder(itemview: View, delegate: PodcastDelegate) : BaseUpNextVi
     init {
         itemview.imgPodCastPoster.setOnClickListener {
             mData?.let {
-                delegate.onItemClick(it.data.id)
+                delegate.onItemClick(it.id)
             }
         }
         itemview.imgDownload.setOnClickListener {
@@ -24,11 +25,11 @@ class UpNextViewHolder(itemview: View, delegate: PodcastDelegate) : BaseUpNextVi
         }
     }
 
-    override fun bindData(data: UpNextPodCastVO) {
+    override fun bindData(data: UpNextVO) {
         mData = data
         Glide.with(itemView.context)
-            .load(data.data.image)
+            .load(data.image)
             .into(itemView.imgPodCastPoster)
-        itemView.tvPodcastName.text = data.data.title
+        itemView.tvPodcastName.text = data.title
     }
 }

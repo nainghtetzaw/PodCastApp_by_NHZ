@@ -94,17 +94,16 @@ class HomeFragment : Fragment(), HomeView {
             .into(imgPodCastPosterMedia)
         tvPodcastTitle.text = data.title
         tvPodCastDescription.text = Html.fromHtml(data.description)
-        tvPodcastAbout.text = data.podcast.podcastTitle
-        tvPodCastDescription
+        tvPodcastAbout.text = data.title
         setUpMediaPlayer(data.audio)
     }
 
-    override fun showUpNextPodCastData(data: List<UpNextPodCastVO>) {
+    override fun showUpNextPodCastData(data: List<UpNextVO>) {
         upNextAdapter.setNewData(data.toMutableList())
     }
 
-    override fun makeDownloadProgress(data: UpNextPodCastVO) {
-        mDownloadedData = data.data
+    override fun makeDownloadProgress(data: UpNextVO) {
+        mDownloadedData = data
         activity?.let {
             if (ContextCompat.checkSelfPermission(it.applicationContext,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -112,7 +111,7 @@ class HomeFragment : Fragment(), HomeView {
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE
                 )
             } else {
-                download(data.data.audio)
+                download(data.audio)
             }
         }
     }

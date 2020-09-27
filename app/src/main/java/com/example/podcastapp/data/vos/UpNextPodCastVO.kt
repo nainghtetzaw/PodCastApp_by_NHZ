@@ -6,8 +6,8 @@ import androidx.room.TypeConverters
 import com.example.podcastapp.persistence.typeconverters.UpNextDataTypeConverter
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "Up_Next")
-@TypeConverters(UpNextDataTypeConverter::class)
+//@Entity(tableName = "Up_Next")
+//@TypeConverters(UpNextDataTypeConverter::class)
 data class UpNextPodCastVO(
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id") var id: Int = 0,

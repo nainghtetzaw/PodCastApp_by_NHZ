@@ -7,7 +7,7 @@ class PodCastApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        PodCastModelImpl.initDatabase(applicationContext)
+//        PodCastModelImpl.initDatabase(applicationContext)
 //        getPodCastDataOneTime()
     }
 

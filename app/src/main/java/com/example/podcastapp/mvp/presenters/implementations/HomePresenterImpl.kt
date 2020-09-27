@@ -8,43 +8,55 @@ import com.example.podcastapp.data.vos.UpNextPodCastVO
 import com.example.podcastapp.data.vos.UpNextVO
 import com.example.podcastapp.mvp.presenters.interfaces.HomePresenter
 import com.example.podcastapp.mvp.views.HomeView
+import com.google.android.material.snackbar.Snackbar
 
 class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 
     override fun onUiReady(context: Context, lifecycleOwner: LifecycleOwner) {
-        requestDataFromNetwork()
-        getAllDataFromDataBase(context, lifecycleOwner)
+        requestData()
+//        requestDataFromNetwork()
+//        getAllDataFromDataBase(context, lifecycleOwner)
     }
 
     override fun saveDownloadData(data: UpNextVO) {
-        mModel.getDownloadedDataAndSaveToDatabase(data)
+//        mModel.getDownloadedDataAndSaveToDatabase(data)
+        mModel.downloadPodCastData(data)
     }
 
     override fun onItemClick(id: String) {
         mView?.navigateToDetail(id)
     }
 
-    override fun onDownloadClick(data: UpNextPodCastVO) {
+    override fun onDownloadClick(data: UpNextVO) {
         mView?.makeDownloadProgress(data)
     }
 
-    private fun requestDataFromNetwork() {
-        mModel.getRandomDataAndSaveToDatabase({}, {})
-        mModel.getUpNextDataAndSaveToDatabase({}, {})
+    private fun requestData(){
+        mModel.getRandomPodCastData({
+            mView?.showRandomPodCastData(it)
+        },{})
+        mModel.getUpNextPodCastData({
+            mView?.showUpNextPodCastData(it)
+        },{})
     }
 
-    private fun getAllDataFromDataBase(context: Context, lifecycleOwner: LifecycleOwner) {
-        mModel.getAllRandomPodCastData().observe(lifecycleOwner, Observer {
-            if(it != null){
-                mView?.showRandomPodCastData(it)
-            }
-        })
-        mModel.getAllUpNextPodCastData().observe(lifecycleOwner, Observer {
-            if (it.isNotEmpty()) {
-                mView?.showUpNextPodCastData(it)
-            } else {
-                Toast.makeText(context, "No data in database.", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
+//    private fun requestDataFromNetwork() {
+//        mModel.getRandomDataAndSaveToDatabase({}, {})
+//        mModel.getUpNextDataAndSaveToDatabase({}, {})
+//    }
+
+//    private fun getAllDataFromDataBase(context: Context, lifecycleOwner: LifecycleOwner) {
+//        mModel.getAllRandomPodCastData().observe(lifecycleOwner, Observer {
+//            if(it != null){
+//                mView?.showRandomPodCastData(it)
+//            }
+//        })
+//        mModel.getAllUpNextPodCastData().observe(lifecycleOwner, Observer {
+//            if (it.isNotEmpty()) {
+//                mView?.showUpNextPodCastData(it)
+//            } else {
+//                Toast.makeText(context, "No data in database.", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
 }

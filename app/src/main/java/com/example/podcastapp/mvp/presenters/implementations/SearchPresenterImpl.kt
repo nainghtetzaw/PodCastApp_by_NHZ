@@ -10,21 +10,28 @@ import com.example.podcastapp.mvp.views.SearchView
 class SearchPresenterImpl : SearchPresenter, AbstractBasePresenter<SearchView>() {
 
     override fun onUiReady(context: Context, lifecycleOwner: LifecycleOwner) {
-        requestDataFromNetwork()
-        getDataFromDataBase(context, lifecycleOwner)
+        requestData()
+//        requestDataFromNetwork()
+//        getDataFromDataBase(context, lifecycleOwner)
     }
 
-    private fun requestDataFromNetwork() {
-        mModel.getGenreDataAndSaveToDatabase({}, {})
+    private fun requestData(){
+        mModel.getGenrePodCastData({
+            mView?.showGenreData(it)
+        },{})
     }
 
-    private fun getDataFromDataBase(context: Context, lifecycleOwner: LifecycleOwner) {
-        mModel.getAllGenreData().observe(lifecycleOwner, Observer {
-            if (it.isNotEmpty()) {
-                mView?.showGenreData(it)
-            } else {
-                Toast.makeText(context, "No Data in Genre Database", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
+//    private fun requestDataFromNetwork() {
+//        mModel.getGenreDataAndSaveToDatabase({}, {})
+//    }
+//
+//    private fun getDataFromDataBase(context: Context, lifecycleOwner: LifecycleOwner) {
+//        mModel.getAllGenreData().observe(lifecycleOwner, Observer {
+//            if (it.isNotEmpty()) {
+//                mView?.showGenreData(it)
+//            } else {
+//                Toast.makeText(context, "No Data in Genre Database", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
 }
