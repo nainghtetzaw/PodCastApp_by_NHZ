@@ -9,18 +9,18 @@ class DownloadedShowPresenterImpl : DownloadedShowPresenter,
     AbstractBasePresenter<DownloadedShowsView>() {
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
 //        getDownloadDataFromDatabase(lifecycleOwner)
-        requestData()
+//        requestData()
     }
 
-    override fun onItemClick(id: String) {
-        mView?.navigateToDetail(id)
+    override fun onItemClick(id: String,name : String,description : String,audio: String,audiolength : Int,image : String) {
+        mView?.navigateToDetail(id,name,description,audio,audiolength,image)
     }
 
-    private fun requestData(){
-        mModel.getDownloadPoeCastData({
-            mView?.showDownloadedData(it)
-        },{})
-    }
+//    private fun requestData(){
+//        mModel.getDownloadPoeCastData({
+//            mView?.showDownloadedData(it)
+//        },{})
+//    }
 
 //    private fun getDownloadDataFromDatabase(lifecycleOwner: LifecycleOwner){
 //        mModel.getAllDownloadPodCastData().observe(lifecycleOwner, Observer {

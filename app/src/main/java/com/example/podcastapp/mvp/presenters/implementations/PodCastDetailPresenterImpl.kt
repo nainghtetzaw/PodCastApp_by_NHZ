@@ -11,14 +11,14 @@ class PodCastDetailPresenterImpl : AbstractBasePresenter<PodCastDetailView>(),
     override fun onUiReady(context: Context, lifecycleOwner: LifecycleOwner, id: String) {
 //        requestDetailDataFromNetwork()
 //        getPodCastDetailDataFromDataBase(id,lifecycleOwner)
-        requestData(id)
+//        requestData(id)
     }
 
-    private fun requestData(id: String){
-        mModel.getPodCastDetailData(id,{
-            mView?.showPodCastDetailData(it)
-        },{})
-    }
+//    private fun requestData(id: String){
+//        mModel.getPodCastDetailData(id,{
+//            mView?.showPodCastDetailData(it)
+//        },{})
+//    }
 
 //    private fun requestDetailDataFromNetwork(){
 //        mModel.getUpNextDataAndSaveToDatabase({},{})

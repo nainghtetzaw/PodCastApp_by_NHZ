@@ -39,8 +39,8 @@ class DownloadedShowsFragment : Fragment(), DownloadedShowsView {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun navigateToDetail(id: String) {
-        startActivity(PodCastDetailActivity.newIntent(activity, id))
+    override fun navigateToDetail(id: String,name : String,description : String,audio: String,audiolength : Int,image : String) {
+        startActivity(PodCastDetailActivity.newIntent(activity,id,name,description,audio,audiolength,image))
     }
 
     override fun showDownloadedData(data: List<UpNextVO>) {

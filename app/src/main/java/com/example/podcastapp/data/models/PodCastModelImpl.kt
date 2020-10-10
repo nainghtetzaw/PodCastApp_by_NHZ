@@ -11,12 +11,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 object PodCastModelImpl : BaseModel(), PodCastModel {
-    override fun getRandomPodCastData(
-        onSuccess: (RandomPodCastVO) -> Unit,
-        onError: (String) -> Unit
-    ) {
-        mFirebaseApi.getAllRandomDataFromFirebase(onSuccess,onError)
-    }
+//    override fun getRandomPodCastData(
+//        onSuccess: (RandomPodCastVO) -> Unit,
+//        onError: (String) -> Unit
+//    ) {
+//        mFirebaseApi.getAllRandomDataFromFirebase(onSuccess,onError)
+//    }
 
     override fun getGenrePodCastData(
         onSuccess: (genres: List<GenreVO>) -> Unit,
@@ -29,20 +29,16 @@ object PodCastModelImpl : BaseModel(), PodCastModel {
         mFirebaseApi.getAllUpNextPodCastFromFirebase(onSuccess,onError)
     }
 
-    override fun getDownloadPoeCastData(
-        onSuccess: (download: List<UpNextVO>) -> Unit,
-        onError: (String) -> Unit
-    ) {
-        mFirebaseApi.getAllDownloadPodCastFromFirebase(onSuccess,onError)
-    }
+//    override fun getDownloadPoeCastData(
+//        onSuccess: (download: List<UpNextVO>) -> Unit,
+//        onError: (String) -> Unit
+//    ) {
+//        mFirebaseApi.getAllDownloadPodCastFromFirebase(onSuccess,onError)
+//    }
 
-    override fun getPodCastDetailData(id : String,onSuccess: (UpNextVO) -> Unit, onError: (String) -> Unit) {
-        mFirebaseApi.getPodCastDetailByIdFromFirebase(id,onSuccess,onError)
-    }
-
-    override fun downloadPodCastData(upnext: UpNextVO) {
-        mFirebaseApi.downloadPodCast(upnext)
-    }
+//    override fun downloadPodCastData(upnext: UpNextVO) {
+//        mFirebaseApi.downloadPodCast(upnext)
+//    }
 
 //    override fun getAllRandomPodCastData(): LiveData<RandomPodCastVO> {
 //        return mPodCastDb.randomPodCastDao().getAllFromRandomPodCastTable()

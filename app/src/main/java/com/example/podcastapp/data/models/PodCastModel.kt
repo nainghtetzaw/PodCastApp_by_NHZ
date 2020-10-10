@@ -20,10 +20,9 @@ interface PodCastModel {
 //    //save download data into database
 //    fun getDownloadedDataAndSaveToDatabase(data: UpNextVO)
 
-    fun getRandomPodCastData(onSuccess : (RandomPodCastVO) -> Unit,onError : (String) -> Unit)
+//    fun getRandomPodCastData(onSuccess : (RandomPodCastVO) -> Unit,onError : (String) -> Unit)
     fun getGenrePodCastData(onSuccess : (genres : List<GenreVO>) -> Unit,onError: (String) -> Unit)
     fun getUpNextPodCastData(onSuccess: (upnext: List<UpNextVO>) -> Unit,onError: (String) -> Unit)
-    fun getDownloadPoeCastData(onSuccess: (download: List<UpNextVO>) -> Unit, onError: (String) -> Unit)
-    fun getPodCastDetailData(id : String,onSuccess: (UpNextVO) -> Unit,onError: (String) -> Unit)
-    fun downloadPodCastData(upnext : UpNextVO)
+//    fun getDownloadPoeCastData(onSuccess: (download: List<UpNextVO>) -> Unit, onError: (String) -> Unit)
+//    fun downloadPodCastData(upnext : UpNextVO)
 }

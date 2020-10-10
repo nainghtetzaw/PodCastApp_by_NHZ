@@ -15,7 +15,13 @@ class UpNextViewHolder(itemview: View, delegate: PodcastDelegate) : BaseUpNextVi
     init {
         itemview.imgPodCastPoster.setOnClickListener {
             mData?.let {
-                delegate.onItemClick(it.id)
+                delegate.onItemClick(it.id,
+                    it.title,
+                    it.description,
+                    it.audio,
+                    it.audio_length_sec,
+                    it.image
+                )
             }
         }
         itemview.imgDownload.setOnClickListener {

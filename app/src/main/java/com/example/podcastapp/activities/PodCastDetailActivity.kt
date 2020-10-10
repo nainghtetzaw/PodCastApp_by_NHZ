@@ -37,9 +37,19 @@ class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
 
     companion object {
         const val PODCAST_ID = "PODCAST_ID"
-        fun newIntent(context: Context?, id: String): Intent {
+        const val PODCAST_NAME = "PODCAST_NAME"
+        const val PODCAST_DESCRIPTION = "PODCAST_DESCRIPTION"
+        const val PODCAST_AUDIO = "PODCAST_AUDIO"
+        const val PODCAST_AUDIO_LENGTH = "PODCAST_AUDIO_LENGTH"
+        const val PODCAST_IMAGE = "PODCAST_IMAGE"
+        fun newIntent(context: Context?,id: String,name : String,description: String,audio : String,audioLength : Int,image : String): Intent {
             val intent = Intent(context, PodCastDetailActivity::class.java)
-                .putExtra(PODCAST_ID, id)
+                .putExtra(PODCAST_ID,id)
+                .putExtra(PODCAST_NAME,name)
+                .putExtra(PODCAST_DESCRIPTION,description)
+                .putExtra(PODCAST_AUDIO,audio)
+                .putExtra(PODCAST_AUDIO_LENGTH,audioLength)
+                .putExtra(PODCAST_IMAGE,image)
             return intent
         }
     }
@@ -48,24 +58,32 @@ class PodCastDetailActivity : AppCompatActivity(), PodCastDetailView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pod_cast_detail)
         setUpPresenter()
-        val podcastId = intent.getStringExtra(PODCAST_ID)
-        podcastId?.let {
-            mPresenter.onUiReady(this, this,it)
-        }
+        showData()
         setTouchAnimationOnButtons()
+    }
 
+    private fun showData(){
+        val podcastId = intent.getStringExtra(PODCAST_ID)
+        val podcastName = intent.getStringExtra(PODCAST_NAME)
+        val podcastDescription = intent.getStringExtra(PODCAST_DESCRIPTION)
+        val podcastAudio = intent.getStringExtra(PODCAST_AUDIO)
+        val podcastAudioLength = intent.getIntExtra(PODCAST_AUDIO_LENGTH,0)
+        val podcastImage = intent.getStringExtra(PODCAST_IMAGE)
+        Glide.with(this)
+            .load(podcastImage)
+            .into(imgPodCastPosterDetail)
+        tvPodcastTitleDetail.text = podcastName
+        tvPodCastDescriptionDetail.text = Html.fromHtml(podcastDescription)
+        tvTotalPodCastTime.text = "${convertSecIntoMinute(podcastAudioLength)} m"
+        tvPodCastStartTime.text = convertSecIntoMinute(0)
+        tvPodCastEndTimeDetail.text = convertSecIntoMinute(podcastAudioLength)
+        podcastAudio?.let {
+            setUpMediaPlayer(it)
+        }
     }
 
     override fun showPodCastDetailData(data: UpNextVO) {
-        Glide.with(this)
-            .load(data.image)
-            .into(imgPodCastPosterDetail)
-        tvPodcastTitleDetail.text = data.title
-        tvPodCastDescriptionDetail.text = Html.fromHtml(data.description)
-        tvTotalPodCastTime.text = "${convertSecIntoMinute(data.audio_length_sec)} m"
-        tvPodCastStartTime.text = convertSecIntoMinute(0)
-        tvPodCastEndTimeDetail.text = convertSecIntoMinute(data.audio_length_sec)
-        setUpMediaPlayer(data.audio)
+
     }
 
     private fun setUpPresenter() {

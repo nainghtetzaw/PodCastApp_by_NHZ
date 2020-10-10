@@ -18,24 +18,34 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 //        getAllDataFromDataBase(context, lifecycleOwner)
     }
 
-    override fun saveDownloadData(data: UpNextVO) {
-//        mModel.getDownloadedDataAndSaveToDatabase(data)
-        mModel.downloadPodCastData(data)
+//    override fun saveDownloadData(data: UpNextVO) {
+////        mModel.getDownloadedDataAndSaveToDatabase(data)
+//        mModel.downloadPodCastData(data)
+//    }
+
+    override fun onItemClick(
+        id: String,
+        name: String,
+        description: String,
+        audio: String,
+        audiolength: Int,
+        image: String
+    ) {
+        mView?.navigateToDetail(id,name,description,audio,audiolength,image)
     }
 
-    override fun onItemClick(id: String) {
-        mView?.navigateToDetail(id)
-    }
 
     override fun onDownloadClick(data: UpNextVO) {
         mView?.makeDownloadProgress(data)
     }
 
     private fun requestData(){
-        mModel.getRandomPodCastData({
-            mView?.showRandomPodCastData(it)
-        },{})
+//        mModel.getRandomPodCastData({
+//            mView?.showRandomPodCastData(it)
+//        },{})
         mModel.getUpNextPodCastData({
+            val randomNum = (it.indices).random()
+            mView?.showRandomPodCastData(it[randomNum])
             mView?.showUpNextPodCastData(it)
         },{})
     }

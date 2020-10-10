@@ -16,7 +16,12 @@ class DownloadedShowsViewHolder(itemview: View,mDelegate: DownloadDelegate) :
     init {
         itemview.imgYourShowPoster.setOnClickListener {
             mData?.let {
-                mDelegate.onItemClick(it.id)
+                mDelegate.onItemClick(it.id,
+                    it.title,
+                    it.description,
+                    it.audio,
+                    it.audio_length_sec,
+                    it.image)
             }
         }
     }

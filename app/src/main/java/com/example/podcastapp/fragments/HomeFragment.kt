@@ -62,7 +62,7 @@ class HomeFragment : Fragment(), HomeView {
             if(id == myDownloadId){
                 activity?.let {
                     Toast.makeText(it.applicationContext, "Download Complete", Toast.LENGTH_SHORT).show()
-                    mPresenter.saveDownloadData(mDownloadedData)
+//                    mPresenter.saveDownloadData(mDownloadedData)
                 }
             }
         }
@@ -88,7 +88,18 @@ class HomeFragment : Fragment(), HomeView {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun showRandomPodCastData(data: RandomPodCastVO) {
+    override fun navigateToDetail(
+        id: String,
+        name: String,
+        description: String,
+        audio: String,
+        audiolength: Int,
+        image: String
+    ) {
+        startActivity(PodCastDetailActivity.newIntent(activity,id,name,description,audio,audiolength,image))
+    }
+
+    override fun showRandomPodCastData(data: UpNextVO) {
         Glide.with(this)
             .load(data.image)
             .into(imgPodCastPosterMedia)
@@ -116,9 +127,7 @@ class HomeFragment : Fragment(), HomeView {
         }
     }
 
-    override fun navigateToDetail(id: String) {
-        startActivity(PodCastDetailActivity.newIntent(activity, id))
-    }
+
 
     private fun initBroadCastReceiver(){
         context?.registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))

@@ -15,25 +15,25 @@ object RealtimeDatabaseImpl : FirebaseApi  {
 
     private val database :  DatabaseReference = Firebase.database.reference
 
-    override fun getAllRandomDataFromFirebase(
-        onSuccess: (RandomPodCastVO) -> Unit,
-        onError: (String) -> Unit
-    ) {
-        database.child("random_podcast_episode").addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot){
-                snapshot.children.forEach { datasnapshot ->
-                    datasnapshot.getValue(RandomPodCastVO::class.java)?.let{
-                        onSuccess(it)
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                onError(error.message)
-            }
-
-        })
-    }
+//    override fun getAllRandomDataFromFirebase(
+//        onSuccess: (RandomPodCastVO) -> Unit,
+//        onError: (String) -> Unit
+//    ) {
+//        database.child("latest_episodes").child("3").addValueEventListener(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot){
+//                snapshot.children.forEach { datasnapshot ->
+//                    datasnapshot.getValue(RandomPodCastVO::class.java)?.let{
+//                        onSuccess(it)
+//                    }
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                onError(error.message)
+//            }
+//
+//        })
+//    }
 
     override fun getAllPodCastGenreFromFirebase(
         onSuccess: (genres: List<GenreVO>) -> Unit,
@@ -61,7 +61,7 @@ object RealtimeDatabaseImpl : FirebaseApi  {
         onSuccess: (upnext: List<UpNextVO>) -> Unit,
         onError: (String) -> Unit
     ) {
-        database.child("playlist").addValueEventListener(object : ValueEventListener{
+        database.child("latest_episodes").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val upnextlist = arrayListOf<UpNextVO>()
                 snapshot.children.forEach {datasnapshot ->
@@ -79,50 +79,29 @@ object RealtimeDatabaseImpl : FirebaseApi  {
         })
     }
 
-    override fun getAllDownloadPodCastFromFirebase(
-        onSuccess: (download: List<UpNextVO>) -> Unit,
-        onError: (String) -> Unit
-    ) {
-        database.child("downloads").addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val downloadlist = arrayListOf<UpNextVO>()
-                snapshot.children.forEach {datasnapshot ->
-                    datasnapshot.getValue(UpNextVO::class.java)?.let {
-                        downloadlist.add(it)
-                    }
-                }
-                onSuccess(downloadlist)
-            }
+//    override fun getAllDownloadPodCastFromFirebase(
+//        onSuccess: (download: List<UpNextVO>) -> Unit,
+//        onError: (String) -> Unit
+//    ) {
+//        database.child("downloads").addValueEventListener(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                val downloadlist = arrayListOf<UpNextVO>()
+//                snapshot.children.forEach {datasnapshot ->
+//                    datasnapshot.getValue(UpNextVO::class.java)?.let {
+//                        downloadlist.add(it)
+//                    }
+//                }
+//                onSuccess(downloadlist)
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                onError(error.message)
+//            }
+//        })
+//
+//    }
 
-            override fun onCancelled(error: DatabaseError) {
-                onError(error.message)
-            }
-        })
-
-    }
-
-    override fun getPodCastDetailByIdFromFirebase(
-        id : String,
-        onSuccess: (UpNextVO) -> Unit,
-        onError: (String) -> Unit
-    ) {
-        database.child("detail").child(id).addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach {datasnapshot ->
-                    datasnapshot.getValue(UpNextVO::class.java)?.let{
-                        onSuccess(it)
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                onError(error.message)
-            }
-
-        })
-    }
-
-    override fun downloadPodCast(upnext: UpNextVO) {
-        database.child("downloads").child(upnext.id).setValue(upnext)
-    }
+//    override fun downloadPodCast(upnext: UpNextVO) {
+//        database.child("downloads").child(upnext.id).setValue(upnext)
+//    }
 }

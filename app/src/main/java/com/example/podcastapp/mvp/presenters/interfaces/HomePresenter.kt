@@ -8,5 +8,5 @@ import com.example.podcastapp.mvp.views.HomeView
 
 interface HomePresenter : PodcastDelegate, BasePresenter<HomeView> {
     fun onUiReady(context: Context, lifecycleOwner: LifecycleOwner)
-    fun saveDownloadData(data : UpNextVO)
+//    fun saveDownloadData(data : UpNextVO)
 }
