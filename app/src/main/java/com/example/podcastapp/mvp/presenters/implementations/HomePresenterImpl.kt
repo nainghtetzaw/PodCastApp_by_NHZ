@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 
     override fun onUiReady(context: Context, lifecycleOwner: LifecycleOwner) {
-        requestData()
+        requestData(context)
 //        requestDataFromNetwork()
 //        getAllDataFromDataBase(context, lifecycleOwner)
     }
@@ -39,7 +39,7 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
         mView?.makeDownloadProgress(data)
     }
 
-    private fun requestData(){
+    private fun requestData(context: Context){
 //        mModel.getRandomPodCastData({
 //            mView?.showRandomPodCastData(it)
 //        },{})
@@ -47,7 +47,9 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
             val randomNum = (it.indices).random()
             mView?.showRandomPodCastData(it[randomNum])
             mView?.showUpNextPodCastData(it)
-        },{})
+        },{
+            Toast.makeText(context,it,Toast.LENGTH_LONG).show()
+        })
     }
 
 //    private fun requestDataFromNetwork() {

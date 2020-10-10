@@ -1,6 +1,7 @@
 package com.example.podcastapp.data.models
 
 import android.content.Context
+import com.example.podcastapp.network.FireStoreDatabaseImpl
 import com.example.podcastapp.network.FirebaseApi
 import com.example.podcastapp.network.PodcastApi
 import com.example.podcastapp.network.RealtimeDatabaseImpl
@@ -16,7 +17,8 @@ abstract class BaseModel {
 //    protected var mPodCastApi: PodcastApi
 //    protected lateinit var mPodCastDb: PodCastDatabase
 
-    val mFirebaseApi : FirebaseApi = RealtimeDatabaseImpl
+//    val mFirebaseApi : FirebaseApi = RealtimeDatabaseImpl
+    val mFirebaseApi : FirebaseApi = FireStoreDatabaseImpl
 
 //    init {
 //        val mOkHttpClient = OkHttpClient.Builder()
